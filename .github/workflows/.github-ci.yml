@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      -github-integration
+      - 'github-integration'
   pull_request:
     branches:
       - main
