@@ -16,3 +16,4 @@ pytest
 pytest-cov
 pytest-mock
 pytest-xdist
+google-cloud-aiplatform
