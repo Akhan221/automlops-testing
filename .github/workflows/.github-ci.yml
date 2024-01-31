@@ -14,7 +14,7 @@ on:
 
 jobs:
   test:
-    # Official language image. Look for the different tagged releases at:
+    # Official language imag. Look for the different tagged releases at:
     # https://hub.docker.com/r/library/python/tags/
     runs-on: ubuntu-latest
     permissions:
@@ -38,7 +38,6 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v2'
       with:
-        token_format: 'access_token'
         workload_identity_provider: 'projects/1063498356496/locations/global/workloadIdentityPools/integration-testing-pool/providers/github'
         service_account: '1063498356496-compute@developer.gserviceaccount.com'
         
