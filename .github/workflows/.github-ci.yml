@@ -14,7 +14,7 @@ on:
 
 jobs:
   test:
-    # Official language imag. Look for the different tagged releases at:
+    # Official language image. Look for the different tagged releases at:
     # https://hub.docker.com/r/library/python/tags/
     runs-on: ubuntu-latest
     permissions:
@@ -51,7 +51,7 @@ jobs:
     - id: 'gcloud'
       name: 'test auth by listing storage'
       run: |-
-        gcloud storage buckets list
+        gcloud config get-value project
 
     - run: echo "This job's status is ${{ job.status }}."
     - name: Run integration tests
