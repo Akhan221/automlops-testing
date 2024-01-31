@@ -30,6 +30,26 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         pip3 install -r requirements.txt
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/1063498356496/locations/global/workloadIdentityPools/integration-testing-pool/providers/github'
+        service_account: '1063498356496-compute@developer.gserviceaccount.com'
+        
+
+    # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    # Now you can run gcloud commands authenticated as the impersonated service account.
+    - id: 'gcloud'
+      name: 'test auth by listing storage'
+      run: |-
+        gcloud storage buckets list
+
+    - run: echo "🍏 This job's status is ${{ job.status }}."
     - name: Run integration tests
       working-directory: tests/integration
       run: |
