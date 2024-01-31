@@ -17,6 +17,9 @@ jobs:
     # Official language image. Look for the different tagged releases at:
     # https://hub.docker.com/r/library/python/tags/
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
