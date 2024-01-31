@@ -40,7 +40,7 @@ jobs:
       with:
         token_format: 'access_token'
         workload_identity_provider: 'projects/1063498356496/locations/global/workloadIdentityPools/integration-testing-pool/providers/github'
-        service_account: '1063498356496-compute@developer.iam.gserviceaccount.com'
+        service_account: '1063498356496-compute@developer.gserviceaccount.com'
         
 
     # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
