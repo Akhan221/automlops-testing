@@ -47,6 +47,9 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
+    - name: Explicitly Set Project
+      run: gcloud config set project 'airflow-sandbox-392816'
+
     # Now you can run gcloud commands authenticated as the impersonated service account.
     - id: 'gcloud'
       name: 'test auth by listing project name'
