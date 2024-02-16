@@ -47,8 +47,14 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
-    - name: Unset Conflicting Environment Variable
-      run: unset CLOUDSDK_CORE_PROJECT
+    - name: Unset Conflicting Variables 
+      run: |  
+        unset CLOUDSDK_CORE_PROJECT 
+        unset CLOUDSDK_PROJECT
+        unset GCLOUD_PROJECT
+        unset GCP_PROJECT
+        unset GOOGLE_CLOUD_PROJECT
+
 
     - name: Explicitly Set Project
       run: gcloud config set project 'airflow-sandbox-392816'
