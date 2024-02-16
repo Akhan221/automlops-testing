@@ -51,7 +51,7 @@ jobs:
     - id: 'gcloud'
       name: 'test auth by listing project name'
       run: |-
-        gcloud config list project --format "value(core.project)"
+        gcloud projects list
 
     - run: echo "This job's status is ${{ job.status }}."
     - name: Run integration tests
