@@ -255,8 +255,9 @@ def test_beans_training_model():
     assert sorted(os.listdir('./.AutoMLOps-cache')) == expected_AMO_cache_files
     assert sorted(os.listdir('./AutoMLOps')) == expected_AMO_directory
 
-    # AutoMLOps.provision(hide_warnings=False)
-    # time.sleep(300)
+    AutoMLOps.provision(hide_warnings=False)
+    time.sleep(300)
+    print("HIT PROVISION")
       
     # Assert that GCP infrastructure was stood up with the correct names.
     defaults = read_yaml_file(GENERATED_DEFAULTS_FILE)
