@@ -35,7 +35,8 @@ jobs:
         pip3 install -r requirements.txt
 
     - name: Print Environment Variables (Before Auth)
-      run: env | sort
+      run: |
+        env | sort
 
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
@@ -45,11 +46,7 @@ jobs:
         workload_identity_provider: 'projects/1063498356496/locations/global/workloadIdentityPools/integration-testing-pool/providers/github'
         service_account: '1063498356496-compute@developer.gserviceaccount.com'
         export_environment_variables: False
-    
-      - name: Print Environment Variables (Before Auth)
-      run: env | sort
         
-
     # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
