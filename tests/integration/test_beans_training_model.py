@@ -24,7 +24,8 @@ from google_cloud_automlops.utils.utils import (
 )
 from google_cloud_automlops.utils.constants import (
     BASE_DIR,
-    GENERATED_DEFAULTS_FILE
+    GENERATED_DEFAULTS_FILE,
+    MIN_GCLOUD_SDK_VERSION
 )
 
 def test_beans_training_model():
@@ -254,6 +255,11 @@ def test_beans_training_model():
 
     assert sorted(os.listdir('./.AutoMLOps-cache')) == expected_AMO_cache_files
     assert sorted(os.listdir('./AutoMLOps')) == expected_AMO_directory
+
+    gcloud_sdk_version = subprocess.check_output(['gcloud info --format="value(basic.version)" 2> /dev/null'], shell=True, stderr=subprocess.STDOUT).decode('utf-8').strip('\n')
+    print("TESTING")
+    print(f"MIN_GCLOUD_SDK_VERSION: {MIN_GCLOUD_SDK_VERSION}")
+    print(f"gcloud_sdk_version: {gcloud_sdk_version}")
 
     AutoMLOps.provision(hide_warnings=False)
     time.sleep(300)

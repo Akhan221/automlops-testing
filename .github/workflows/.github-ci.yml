@@ -66,8 +66,8 @@ jobs:
     # Now you can run gcloud commands authenticated as the impersonated service account.
     - id: 'gcloud'
       name: 'test auth by listing project name'
-      run: |-
-        gcloud config list
+      run: |
+        gsutil ls 
 
     - run: echo "This job's status is ${{ job.status }}."
     - name: Run integration tests
