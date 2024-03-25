@@ -721,7 +721,7 @@ def check_installation_versions(provisioning_framework: str):
         try:
             gcloud_beta_version = subprocess.check_output(
                 ['gcloud info --format="value(installation.components.beta)" 2> /dev/null'], shell=True, stderr=subprocess.STDOUT).decode('utf-8').strip('\n')
-            if version.parse(MIN_GCLOUD_BETA_VERSION) > version.parse(gcloud_beta_version):
+            if parse(MIN_GCLOUD_BETA_VERSION) > parse(gcloud_beta_version):
                 logging.warning(f'WARNING: You are currently using version {gcloud_beta_version} of the gcloud beta. We recommend using at least version {MIN_GCLOUD_BETA_VERSION}.\n '
                                 f'Please update your beta version by running: gcloud components install beta.\n')
         except subprocess.CalledProcessError:
@@ -732,7 +732,7 @@ def check_installation_versions(provisioning_framework: str):
             terraform_version_json_string = subprocess.check_output(
                 ['terraform version -json 2> /dev/null'], shell=True, stderr=subprocess.STDOUT).decode('utf-8').strip('\n')
             terraform_version = json.loads(terraform_version_json_string)['terraform_version']
-            if version.parse(MIN_RECOMMENDED_TERRAFORM_VERSION) > version.parse(terraform_version):
+            if parse(MIN_RECOMMENDED_TERRAFORM_VERSION) > parse(terraform_version):
                 logging.warning(f'WARNING: You are currently using version {terraform_version} of terraform. AutoMLOps has been tested with version {MIN_RECOMMENDED_TERRAFORM_VERSION}.\n '
                                 f'We recommend updating your terraform version.\n')
         except subprocess.CalledProcessError:
