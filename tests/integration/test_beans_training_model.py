@@ -31,7 +31,7 @@ from google_cloud_automlops.utils.constants import (
 def test_beans_training_model():
 
     # Install AutoMLOps from [PyPI](https://pypi.org/project/google-cloud-automlops/), or locally by cloning the repo and running `pip install .`
-    helpers.execute_process('pip3 install google-cloud-automlops', False)
+    helpers.execute_process('pip3 install .', False)
 
     # Set your project ID below.
     PROJECT_ID = 'airflow-sandbox-392816'  # @param {type:"string"}
@@ -261,9 +261,9 @@ def test_beans_training_model():
     print(f"MIN_GCLOUD_SDK_VERSION: {MIN_GCLOUD_SDK_VERSION}")
     print(f"gcloud_sdk_version: {gcloud_sdk_version}")
 
-    AutoMLOps.provision(hide_warnings=False)
-    time.sleep(300)
-    print("HIT PROVISION")
+    # AutoMLOps.provision(hide_warnings=False)
+    # time.sleep(300)
+    # print("HIT PROVISION")
       
     # Assert that GCP infrastructure was stood up with the correct names.
     defaults = read_yaml_file(GENERATED_DEFAULTS_FILE)

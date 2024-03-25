@@ -708,6 +708,8 @@ def check_installation_versions(provisioning_framework: str):
         try:
             gcloud_sdk_version = subprocess.check_output(
                 ['gcloud info --format="value(basic.version)" 2> /dev/null'], shell=True, stderr=subprocess.STDOUT).decode('utf-8').strip('\n')
+            print(gcloud_sdk_version)
+            print(MIN_GCLOUD_SDK_VERSION)
             if version.parse(MIN_GCLOUD_SDK_VERSION) > version.parse(gcloud_sdk_version):
                 logging.warning(f'WARNING: You are currently using version {gcloud_sdk_version} of the gcloud sdk. We recommend using at least version {MIN_GCLOUD_SDK_VERSION}.\n '
                                 f'Please update your sdk version by running: gcloud components update.\n')
