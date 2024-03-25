@@ -721,6 +721,8 @@ def check_installation_versions(provisioning_framework: str):
         try:
             gcloud_beta_version = subprocess.check_output(
                 ['gcloud info --format="value(installation.components.beta)" 2> /dev/null'], shell=True, stderr=subprocess.STDOUT).decode('utf-8').strip('\n')
+            print(gcloud_beta_version)
+            print(MIN_GCLOUD_BETA_VERSION)
             print(parse(gcloud_beta_version))
             print(parse(MIN_GCLOUD_BETA_VERSION))
             if parse(MIN_GCLOUD_BETA_VERSION) > parse(gcloud_beta_version):
