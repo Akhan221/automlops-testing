@@ -68,6 +68,12 @@ jobs:
       name: 'test auth by listing project name'
       run: |
         gsutil ls 
+      
+    # Pip install AMO locally
+    - id: 'amo-install'
+      name: 'Install AMO locally'
+      run: |
+        pip install . 
 
     - run: echo "This job's status is ${{ job.status }}."
     - name: Run integration tests
