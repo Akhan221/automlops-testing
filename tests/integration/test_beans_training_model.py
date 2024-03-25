@@ -31,7 +31,7 @@ from google_cloud_automlops.utils.constants import (
 def test_beans_training_model():
 
     # Install AutoMLOps from [PyPI](https://pypi.org/project/google-cloud-automlops/), or locally by cloning the repo and running `pip install .`
-    helpers.execute_process('pip3 install .', False)
+    helpers.execute_process('pip3 install ../', False)
 
     # Set your project ID below.
     PROJECT_ID = 'airflow-sandbox-392816'  # @param {type:"string"}
