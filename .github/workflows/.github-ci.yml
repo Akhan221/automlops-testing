@@ -65,9 +65,9 @@ jobs:
 
     # Now you can run gcloud commands authenticated as the impersonated service account.
     - id: 'gcloud'
-      name: 'test auth by listing project name'
+      name: 'install gcloud beta'
       run: |
-        gsutil ls 
+        gcloud components install beta
       
     # Pip install AMO locally
     - id: 'amo-install'
