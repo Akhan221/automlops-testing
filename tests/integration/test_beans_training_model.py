@@ -261,9 +261,13 @@ def test_beans_training_model():
     print(f"MIN_GCLOUD_SDK_VERSION: {MIN_GCLOUD_SDK_VERSION}")
     print(f"gcloud_sdk_version: {gcloud_sdk_version}")
 
-    AutoMLOps.provision(hide_warnings=False)
-    time.sleep(300)
-    print("HIT PROVISION")
+    gcloud_beta_version = subprocess.check_output(['gcloud info --format="value(installation.components.beta)" 2> /dev/null'], shell=True, stderr=subprocess.STDOUT).decode('utf-8').strip('\n')
+    print("THIS IS THE gcloud beta version")
+    print(gcloud_beta_version)
+
+    # AutoMLOps.provision(hide_warnings=False)
+    # time.sleep(300)
+    # print("HIT PROVISION")
       
     # Assert that GCP infrastructure was stood up with the correct names.
     defaults = read_yaml_file(GENERATED_DEFAULTS_FILE)
