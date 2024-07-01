@@ -265,9 +265,9 @@ def test_beans_training_model():
     print("THIS IS THE gcloud beta version")
     print(gcloud_beta_version)
 
-    AutoMLOps.provision(hide_warnings=False)
-    time.sleep(300)
-    print("HIT PROVISION")
+    # AutoMLOps.provision(hide_warnings=False)
+    # time.sleep(300)
+    # print("HIT PROVISION")
       
     # Assert that GCP infrastructure was stood up with the correct names.
     defaults = read_yaml_file(GENERATED_DEFAULTS_FILE)

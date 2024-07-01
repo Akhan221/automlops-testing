@@ -1,6 +1,5 @@
 import subprocess
 import re
-import google_cloud_automlops.utils.utils
 from google_cloud_automlops.utils.utils import (
     delete_file,
     execute_process,
