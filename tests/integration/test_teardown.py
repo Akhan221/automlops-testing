@@ -55,7 +55,7 @@ def string_execute_process(command: str, to_null: bool = False) -> str:
 
 
 
-def teardown_gcloud_resources(project_id, artifact_repo_location, artifact_repo_name="dry-beans-dt-inferencing-artifact-registry"): 
+def teardown_gcloud_artifact_registry(project_id, artifact_repo_location, artifact_repo_name="dry-beans-dt-inferencing-artifact-registry"): 
     artifact_list = string_execute_process(f'gcloud artifacts repositories list --project={project_id} --location={artifact_repo_location}', False)
     if artifact_repo_name in artifact_list:
         print("This is the artifact list: ", artifact_list)
@@ -64,6 +64,26 @@ def teardown_gcloud_resources(project_id, artifact_repo_location, artifact_repo_
     else:
         print(f"The artifact registry {artifact_repo_name} doesn't exist in {artifact_repo_location}")
 
-teardown_gcloud_resources("airflow-sandbox-392816", "us-central1")
+from google.cloud import storage
+
+
+def teardown_gcs_bucket(project_id, bucket_name):
+    """Deletes a Google Cloud Storage bucket if it exists.
+
+    Args:
+        project_id: The ID of the Google Cloud project.
+        bucket_name: The name of the bucket to delete.
+    """
+    storage_client = storage.Client(project=project_id)
+    try:
+        bucket = storage_client.get_bucket(bucket_name)  
+        bucket.delete(force=True) 
+        print(f"Bucket '{bucket_name}' deleted successfully.")
+    except:
+        print(f"Bucket '{bucket_name}' does not exist.")
+
+# teardown_gcloud_artifact_registry("airflow-sandbox-392816", "us-central1")
+
+teardown_gcs_bucket("airflow-sandbox-392816", "nim-tests-mm")
 
     
