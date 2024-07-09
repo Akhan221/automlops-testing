@@ -82,8 +82,27 @@ def teardown_gcs_bucket(project_id, bucket_name):
     except:
         print(f"Bucket '{bucket_name}' does not exist.")
 
-# teardown_gcloud_artifact_registry("airflow-sandbox-392816", "us-central1")
+def teardown_cloud_source_repository(project_id, repo_name):
+    """Deletes a Cloud Source Repository if it exists, using gcloud.
 
-teardown_gcs_bucket("airflow-sandbox-392816", "nim-tests-mm")
+    Args:
+        project_id: The ID of the Google Cloud project.
+        repo_name: The name of the repository to delete.
+    """
+    existing_repos = string_execute_process(f'gcloud source repos list --project={project_id}')
+    if repo_name in existing_repos:
+        
+        try:
+            delete_output = string_execute_process(f"gcloud source repos delete {repo_name} --project={project_id} --quiet")
+            print(f"Deleted Cloud Source Repository '{repo_name}' successfully.")
+            print("Details:", delete_output)
+        except subprocess.CalledProcessError as e:
+            print(f"Error deleting repository '{repo_name}': {e.stderr}")
+    
+    else:
+        print(f"Cloud Source Repository '{repo_name}' does not exist in project '{project_id}'.")
+
+# teardown_gcloud_artifact_registry("airflow-sandbox-392816", "us-central1")
+# teardown_gcs_bucket("airflow-sandbox-392816", "nim-tests-mm")
 
     
